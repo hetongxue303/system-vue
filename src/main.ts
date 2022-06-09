@@ -5,6 +5,7 @@ import router from './router'
 import {axios, VueAxios} from './utils/axios'
 import {createPinia} from 'pinia'
 import 'nprogress/nprogress.css'
+import 'virtual:windi.css'
 
 const app = createApp(App)
 

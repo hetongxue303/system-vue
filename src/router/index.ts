@@ -4,6 +4,11 @@ import nProgress from 'nprogress'
 
 const routes: Array<RouteRecordRaw> = [
     {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('../views/error/404.vue')
+    },
+    {
         path: '/',
         redirect: '/login'
     },

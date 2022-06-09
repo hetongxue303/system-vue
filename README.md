@@ -48,10 +48,11 @@ export default defineConfig({
     server: {
         host: '127.0.0.1',
         port: 3000,
+        cors: true,
         open: true,
         proxy: {
             '/api': {
-                target: '你的服务器地址',
+                target: 'http://127.0.0.1:8080',
                 changeOrigin: true,
                 rewrite: (path: string) => path.replace(/^\/api/, '')
             }
@@ -192,9 +193,10 @@ import 'nprogress/nprogress.css'
 </style>
 ```
 
-> 解决引用错误问题`env.d.ts`
+> 解决引用错误问题
 
 ```ts
+//  在env.d.ts中添加
 declare module 'nprogress'
 ```
 
@@ -337,6 +339,36 @@ npm install animate.css --save
 ```html
 <h1 class="animate__animated animate__bounce">An animated element</h1>
 ```
+
+#### windi css
+
+官网：[Windi Css](https://cn.windicss.org/)
+
+- 安装
+
+```shell
+npm install -D vite-plugin-windicss windicss
+```
+
+- 配置
+
+```ts
+//  在vite.config.ts中添加下列配置
+import WindiCSS from 'vite-plugin-windicss'
+
+export default {
+    plugins: [
+        WindiCSS(),
+    ],
+}
+
+// 在main.ts中引入样式文件
+import 'virtual:windi.css'
+```
+
+- 使用
+
+[使用详情](https://cn.windicss.org/utilities/general/colors.html)
 
 ### axios
 

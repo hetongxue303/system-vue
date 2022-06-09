@@ -1,9 +1,13 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from "path"
+import WindiCSS from 'vite-plugin-windicss'
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [
+        vue(),
+        WindiCSS()
+    ],
     resolve: {
         alias: {
             '@': path.join(__dirname, 'src'),
@@ -17,7 +21,7 @@ export default defineConfig({
         host: '127.0.0.1',
         port: 3000,
         cors: true,
-        open: true,
+        open: false,
         proxy: {
             '/api': {
                 target: 'http://127.0.0.1:8080',
