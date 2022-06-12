@@ -488,3 +488,17 @@ app.use(createPinia())
     .mount('#app')
 ```
 
+## 其他插件
+
+### qs
+
+- 安装
+
+```shell
+npm install qs
+```
+
+```ts
+//  env.d.ts
+declare module 'qs'
+```
