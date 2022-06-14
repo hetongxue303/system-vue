@@ -1,28 +1,9 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import nProgress from 'nprogress'
+import {routerList} from './routerList'
 
 
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/:pathMatch(.*)*',
-        name: 'NotFound',
-        component: () => import('../views/error/404.vue')
-    },
-    {
-        path: '/',
-        redirect: '/login'
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: () => import('../views/Login.vue')
-    },
-    {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: () => import('../views/dashboard/Index.vue')
-    }
-]
+const routes: Array<RouteRecordRaw> = routerList
 
 const router = createRouter({
     history: createWebHistory(),

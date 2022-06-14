@@ -24,7 +24,7 @@
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" placeholder="请输入密码">
+          <el-input v-model="loginForm.password" placeholder="请输入密码" type="password">
             <template #prefix>
               <el-icon>
                 <component is="lock"/>
@@ -118,6 +118,7 @@ const loginHandler = async (formEl: FormInstance | undefined) => {
           ElMessage.error('用户名或密码错误')
           loginForm.code = ''
           loginForm.password = ''
+          await initImageCode()
           break
         }
       }
@@ -127,35 +128,35 @@ const loginHandler = async (formEl: FormInstance | undefined) => {
 
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
 .login-container {
-@apply min-h-screen bg-indigo-500;
+  @apply min-h-screen bg-indigo-500;
 
   .left {
-  @apply flex flex-col justify-center items-center;
+    @apply flex flex-col justify-center items-center;
 
     &-title {
-    @apply font-bold text-5xl text-light-50 mb-4;
+      @apply font-bold text-5xl text-light-50 mb-4;
     }
 
     &-text {
-    @apply text-gray-200 text-sm;
+      @apply text-gray-200 text-sm;
     }
   }
 
   .right {
-  @apply bg-light-50 flex flex-col justify-center items-center;
+    @apply bg-light-50 flex flex-col justify-center items-center;
 
     &-title {
-    @apply font-bold text-3xl text-gray-800;
+      @apply font-bold text-3xl text-gray-800;
     }
 
     &-textBox {
-    @apply space-x-2 flex justify-center items-center my-5 text-gray-300;
+      @apply space-x-2 flex justify-center items-center my-5 text-gray-300;
     }
 
     &-loginBox {
-    @apply w- [ 250 px ];
+      @apply w- [ 250 px ];
     }
   }
 }

@@ -77,6 +77,11 @@ export default defineConfig({
 
 ```json
 {
+  "compilerOptions": {
+    "types": [
+      "vite/client"
+    ]
+  },
   "noImplicitAny": true,
   "noImplicitThis": true,
   "strictNullChecks": true,
@@ -498,7 +503,122 @@ app.use(createPinia())
 npm install qs
 ```
 
+- 使用
+
+```ts
+import * as qs from 'qs'
+```
+
+> 解决引用报红
+
 ```ts
 //  env.d.ts
 declare module 'qs'
+```
+
+### cookie
+
+- 安装
+
+```shell
+# 由于universal-cookie依赖于vueuse/integrations 故需要安装
+npm install @vueuse/integrations
+# cookie依赖安装
+npm install universal-cookie
+```
+
+- 使用
+
+```ts
+import {useCookies} from '@vueuse/integrations/useCookies'
+```
+
+### svgIcon
+
+- 安装
+
+```shell
+npm install vite-plugin-svg-icons -D
+```
+
+- 配置
+
+```ts
+//  vite.config.ts
+import {defineConfig} from 'vite'
+import * as path from 'path'
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons'
+
+export default defineConfig({
+    plugins: [
+        createSvgIconsPlugin({
+            iconDirs: [path.resolve(process.cwd()), 'src/assets/icons/svg'],
+            symbolId: 'icon-[dir]-[name]'
+        })
+    ]
+})
+```
+
+> ts.config.json
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "vite-plugin-svg-icons/client"
+    ]
+  }
+}
+```
+
+- 创建组件
+
+```vue
+// src/components/SvgIcon/Index.vue
+<template>
+  <svg aria-hidden="true" class="svg-icon" :width="size" :height="size">
+    <use :xlink:href="symbolId" rel="external nofollow" :fill="color"/>
+  </svg>
+</template>
+
+<script setup lang="ts">
+import {computed} from 'vue';
+
+const props = defineProps({
+  prefix: {type: String, default: 'icon'},
+  name: {type: String, required: true},
+  color: {type: String, default: ''},
+  size: {type: String, defalut: '1em'}
+})
+
+const symbolId = computed(() => `#${props.prefix}-${props.name}`);
+
+</script>
+
+<style scoped lang="scss">
+.svg-icon {
+  vertical-align: -0.15em;
+  overflow: hidden;
+  fill: currentColor;
+}
+</style>
+```
+
+- 注册
+
+```ts
+import {createApp} from 'vue'
+import App from './App.vue'
+import 'virtual:svg-icons-register'
+
+const app = createApp(App)
+
+app.component('svg-icon', () => import('./components/SvgIcon/Index.vue')).mount('#app')
+```
+
+- 使用
+
+```html
+
+<svg-icon name="bug"/>
 ```

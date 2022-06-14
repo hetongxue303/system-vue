@@ -15,7 +15,10 @@ export const getVerify = () => {
 export const login = (data: loginEntity) => {
     return axios({
         method: 'POST',
-        url: '/api/loginCheck',
-        data: qs.stringify(data)
+        url: '/api/login',
+        data: qs.stringify(data),
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
     })
 }
