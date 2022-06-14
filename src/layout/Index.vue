@@ -7,6 +7,7 @@
       <el-header height="50px">
         <Header/>
       </el-header>
+      <Tabs/>
       <el-main>
         <router-view/>
       </el-main>
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import Sidebar from '../layout/components/sidebar/Index.vue'
 import Header from '../layout/components/header/Index.vue'
+import Tabs from '../components/tabs/Index.vue'
 import Footer from '../layout/components/footer/Index.vue'
 import {useLayoutStore} from '../store/layout'
 
