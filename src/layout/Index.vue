@@ -43,6 +43,8 @@ const layoutStore = useLayoutStore()
 }
 
 .el-main {
+  height: 100%;
+  width: 100%;
 }
 
 .el-footer {

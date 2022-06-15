@@ -143,7 +143,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .tab-parent {
   width: 100%;
-  height: 30px;
+  height: 40px;
 }
 
 .tabs > .el-tabs__content {

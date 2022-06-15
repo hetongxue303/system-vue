@@ -7,12 +7,6 @@
               @click.prevent="router.push('/')">{{ item.meta.title }}</span>
         <span v-else class="no-redirect">{{ item.meta.title }}</span>
       </el-breadcrumb-item>
-      <!--      <template v-for="(item,index) in breadcrumbData" :key="index">-->
-      <!--        <el-breadcrumb-item v-if="item.path==='/dashboard'" :to="{path:'/'}">-->
-      <!--          {{ item.meta.title }}-->
-      <!--        </el-breadcrumb-item>-->
-      <!--        <el-breadcrumb-item v-else>{{ item.meta.title }}</el-breadcrumb-item>-->
-      <!--      </template>-->
     </transition-group>
   </el-breadcrumb>
 </template>
