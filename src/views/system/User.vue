@@ -1,6 +1,6 @@
 <template>
   <!--搜索-->
-  <el-row :gutter="10" style="height: 8%">
+  <el-row :gutter="10" style="height: 7%">
     <el-col :span="5">
       <el-input v-model="searchVal" type="text" placeholder="请输入用户名"/>
     </el-col>
@@ -9,8 +9,12 @@
       <el-button type="default" :icon="Refresh" @click="searchVal=''">重置</el-button>
     </el-col>
   </el-row>
+  <!--操作-->
+  <el-row :gutter="10" style="height: 7%">
+    <el-button type="success" @click="showDialog=true">添加</el-button>
+  </el-row>
   <!--表格-->
-  <el-row style="height: 84%;padding: 0;margin: 0">
+  <el-row style="height: 83%;padding: 0;margin: 0">
     <el-table
         :data="userList"
         border
@@ -31,32 +35,37 @@
       <el-table-column prop="email" label="邮箱"/>
       <el-table-column prop="createTime" label="创建时间"/>
       <el-table-column label="操作" width="120" align="center">
-        <template #default="scope">
+        <template #default="{row}">
           <el-button
               size="small"
               type="primary"
               :icon="Edit"
-              @click="handleEdit(scope.$index, scope.row)"/>
+              @click="handleEdit(row)"/>
+
           <el-button
               size="small"
               type="danger"
               :icon="Delete"
-              @click="handleDelete(scope.$index, scope.row)"/>
+              @click="handleDelete(row)"/>
         </template>
       </el-table-column>
     </el-table>
   </el-row>
   <!--分页组件-->
-  <el-row style="height: 8%">
+  <el-row style="height: 3%">
     <el-pagination
         background
         layout="total,sizes,prev,pager,next,jumper"
-        :total="50"
-    />
+        :total="50"/>
   </el-row>
+
+  <AddUserDialog v-model="showAddDialog" show-add-dialog/>
+<!--  <EditUserDialog v-model="showEditDialog" :data="userInfo" show-edit-dialog/>-->
 </template>
 
 <script setup lang="ts">
+import AddUserDialog from '../../components/system/user/AddUserDialog.vue'
+import EditUserDialog from '../../components/system/user/EditUserDialog.vue'
 import {Search, Refresh, Edit, Delete} from '@element-plus/icons-vue'
 import {User} from '../../api/entity'
 import {reactive, ref} from 'vue'
@@ -98,16 +107,23 @@ const handleSelectionChange = (val: User[]) => {
 }
 
 
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row)
+let userInfo = reactive<User>({})
+const handleEdit = (row: User) => {
+  console.log(row)
+  userInfo = row
+  showEditDialog.value = true
   ElMessage.warning('待开发...')
 }
 
 
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row)
+const handleDelete = (row: User) => {
+  console.log(row)
   ElMessage.warning('待开发...')
 }
+
+/*添加*/
+let showAddDialog = ref<boolean>(false)
+let showEditDialog = ref<boolean>(false)
 </script>
 
 <style scoped lang="scss">

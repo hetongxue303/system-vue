@@ -1,17 +1,17 @@
 /*用户*/
 export interface User {
-    id: number,
-    username: string,
+    id?: number,
+    username?: string,
     password?: string,
     realName?: string,
-    nickName: string,
-    gender: number,
+    nickName?: string,
+    gender?: number,
     phone?: number,
-    email: string,
+    email?: string,
     avatar?: string,
     isAdmin?: number,
     isDelete?: number,
-    createTime: string,
+    createTime?: string,
     updateTime?: string
 }
 

@@ -38,7 +38,7 @@ const changeDefaultActive = () => active.value = route.path
 const menuList: menuItem[] = menuListData
 
 // 监听路由变化设置菜单
-watch(() => route.path, () => changeDefaultActive())
+watch(() => route.path, () => changeDefaultActive(), {deep: true, immediate: true})
 
 // 启动
 onMounted(() => changeDefaultActive())
